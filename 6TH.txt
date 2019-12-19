@@ -1,0 +1,122 @@
+#include <stdio.h>
+#include <stdlib.h>
+void print() {
+    int gamemode,n,m;
+    here :
+    printf("(1) Choose Mode Of The Game\n");
+    printf("   \" BEGINNER \" Press 1\n    \" EXPERT \"  Press 2\n");
+    scanf("%d",&gamemode) ;
+    if(gamemode==1){
+        n = 5;
+        m = 12;
+    }
+    else if(gamemode==2){
+        n = 11 ;
+        m = 30 ;
+    }
+    else{
+        printf("Invalid Input");
+        goto here ;
+    }
+    printf("\n");
+    char gridArray[n][n];
+    for (int i=0 ; i<n ; i++) {
+        for(int j=0 ; j<n ; j++) {
+            if (i%2 == 0 && j%2 == 0) {
+                gridArray[i][j] = 254;
+            }
+            else if (i%2 == 0 && j%2 == 1) {
+                gridArray[i][j] = ' ' ;
+            }
+            else if (i%2 == 1 && j%2 == 0) {
+                gridArray[i][j] = ' ';
+            }
+            else if (i%2 == 1 && i%2 == 1){
+                gridArray[i][j] = ' ';
+            }
+        }
+    }
+    if (gamemode == 1) {
+        printf("\t\t\t     0 1 2 3 4\n");
+    }
+    else if (gamemode == 2) {
+        printf("\t\t\t     0 1 2 3 4 5 6 7 8 9 10\n");
+    }
+    for (int i=0 ; i<n ; i++) {
+        if (i != 10) {
+            printf("\t\t\t%d    ",i);
+        }
+        else if (i == 10) {
+            printf("\t\t       %d    ",i);
+        }
+        for (int j=0 ; j<n ; j++) {
+            printf("%c ",gridArray[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for(int i=0 ; i<m ; i++) {
+        printf("Enter Row Then Column Of The Required Line as 0 3 --> ");
+        int r , c;                                                                               // r = row , c = column
+        scanf("%d %d",&r,&c);
+        for(int i=0 ; i<n ; i++ ) {
+            for(int j=0 ; j<n ; j++) {
+                if (r == i && c == j) {
+                    if (i%2 == 0 && j%2 == 1) {
+                        gridArray[r][c] = '-';
+                    }
+                    else if (i%2 == 1 && j%2 == 0) {
+                        gridArray[r][c] = '|';
+                    }
+                }
+            }
+        }
+        system("cls");
+        if (gamemode == 1) {
+            printf("\t\t\t     0 1 2 3 4\n");
+        }
+        else if (gamemode == 2) {
+            printf("\t\t\t     0 1 2 3 4 5 6 7 8 9 10\n");
+        }
+        for (int i=0 ; i<n ; i++) {
+            if (i != 10) {
+                printf("\t\t\t%d    ",i);
+            }
+            else if (i == 10) {
+                printf("\t\t       %d    ",i);
+            }
+            for (int j=0 ; j<n ; j++) {
+                printf("%c ",gridArray[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+    printf("      Hello Gamer!\n");
+    print();
+    return 0;
+}
+/*typedef struct game {
+char name[25];
+char color;
+int score;
+}play;
+printf("Player(1) VS Player(2)\"")
+play player1, player2, computer;
+printf("Player(1) Name: ");
+scanf("%c",player1.name);
+printf("\n");
+printf("Player(2) Name: ");
+scanf("%c",player2.name);
+printf("\n");
+computer.name = 'Computer';
+player1.color = 'Blue';
+player2.color = 'Red';
+computer.color = 'Red';
+int score1,score2,score3;
+player1.score = score1;
+player2.score = score2;
+computer.score = score3;*/

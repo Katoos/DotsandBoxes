@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <windows.h> //for coloring lines
+#define ANSI_COLOR_RED   "\x1b[31m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
+void grid(int gameMode,int r,int c){
+    if (gameMode == 1) {
+        char saving_lines_array[5][5];     //to print all the previous lines that was printed not only the new one
+        char gridArray[5][5];                   // Beginner Mode Grid
+        printf("\t\t\t     0   1   2   3   4");
+        for(int i=0 ; i<5 ; i++) {
+            printf("\n\n");
+            printf("\t\t\t%d    ",i);
+            for (int j=0 ; j<5 ; j++) {
+            if (i%2 == 0) {
+                if (j%2 == 0) {
+                    gridArray[i][j] = 254;
+                    printf("%c",gridArray[i][j]);
+                }
+                else
+                {
+                    if (r != i || c != j) {
+                        gridArray[i][j] = ' ';
+                        printf("   %c   ",gridArray[i][j]);
+                    }
+                    else if (r == i && c == j) {
+                        //for(w=0;w<12;w++)
+                          //printf("%%%%");
+                        gridArray[i][j] = '-';
+                        saving_lines_array[r][c]='-' ;
+                        printf("%c%c%c%c%c%c%c",gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j]);
+                    }
+                }
+            }
+            else
+            {
+                if (j%2 == 1) {
+                    gridArray[i][j] = ' ';
+                    printf("%c   ",gridArray[i][j]);
+                }
+                else {
+                    if (r != i || c!= j) {
+                    gridArray[i][j] = ' ';
+                    printf("%c   ",gridArray[i][j]);
+                    }
+                    else if (r == i && c == j) {
+                    i=r;
+                    j=c;
+                    gridArray[i][j] = '|';
+                    printf("%c   ",gridArray[i][j]);
+                    }
+                }
+            }
+            }
+    }
+}
+    else if (gameMode == 2) {                             // Expert Mode Grid
+        char gridArray[21][21];
+        printf("\t\t\t\t0  1   2   3   4   5   6   7  8   9  10  11  12  13 14 15  16  17  18  19 20");
+        for(int i=0 ; i<21 ; i++) {
+            printf("\n\n");
+               printf("\t\t\t%d\t",i);
+            for (int j=0 ; j<21 ; j++) {
+            if (i%2 == 0) {
+                if (j%2 == 0) {
+                    if((i%4==0)&&(j%4==0)){
+                    gridArray[i][j] = 254;
+                    printf("%c",gridArray[i][j]);
+                    }
+                }
+                else
+                {
+                    if (r != i || c != j) {
+                        gridArray[i][j] = ' ';
+                        printf("   %c   ",gridArray[i][j]);
+                    }
+                    else if (r == i && c == j) {
+                        i=r;
+                        j=c;
+                        gridArray[i][j] = '-';
+                        printf("%c%c%c%c%c%c%c",gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j],gridArray[i][j]);
+                    }
+                }
+            }
+            else {
+
+                if (j%2 == 1) {
+                    gridArray[i][j] = ' ';
+                    printf("%c   ",gridArray[i][j]);
+                }
+                else {
+                    if (r != i || c!= j) {
+                        gridArray[i][j] = ' ';
+                        printf("%c   ",gridArray[i][j]);
+                    }
+                    else if (r == i && c == j) {
+                        i=r;
+                        j=c;
+                        gridArray[i][j] = '|';
+                        printf("%c   ",gridArray[i][j]);
+                    }
+                }
+       }
+   }
+ }
+}
+}
+int main()
+{
+    int q,x;
+    printf("     Hello Gamer!\n     -----------\n\n");   //the menu bar
+    printf("      *New Game*\n\n");
+    printf("      *Load Game*\n\n");
+    printf("       *Top 10* \n\n");
+    printf("      *The game rules*\n\n");
+    printf("for \"New Game\" press 1\nfor \"Load Game\" press 2\nfor\"Top 10\" press 3\nfor \"The Game Rules\" press 4\n");
+    scanf("%d",&x);
+    system("cls");    //the function"system(cls) is used to clear the console window "
+    if(x==1){           //in the case that user wanted to start a new game
+    printf("(1) Choose Mode Of The Game\n");
+    printf("   \" BEGINNER \" Press 1\n    \" EXPERT \"  Press 2\n");
+    int  gameMode, NoOfLines;
+    scanf("%d",&gameMode);
+    system("cls");           //the function"system(cls) is used to clear the console window "
+    if (gameMode == 1) {
+            NoOfLines = 12;
+    }
+    else if (gameMode == 2) {
+            NoOfLines = 100;
+    }
+    for (int i=0 ; i<NoOfLines ; i++) {
+    printf("Enter Row Then Column Of The Required Line as row column --> ");
+    int r , c;                                                  // r = index of row , c = index of columns
+    scanf("%d %d",&r,&c);
+    printf("\n");
+    grid(gameMode,r,c);
+    printf("\n\n");
+    }
+  }else if(x==4){
+  printf("it is a game played by two players ,and the players take turns in drawing lines between dots on a grid. The player who completes the most boxes wins.");//telling the user the rules of game
+  }
+    return 0;
+}
